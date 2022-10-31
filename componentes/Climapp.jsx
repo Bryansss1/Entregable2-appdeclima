@@ -21,12 +21,9 @@ const cambio=()=>{
       }
       const options={
             enableHightAccuary:true,
-            timeout:2000,
             maximunAge:0
         }
     const error=()=>{
-        setTimeout(() => {
-        }, timeout);
        return(
         <div>
         <h2></h2>
@@ -75,7 +72,7 @@ document.body.style=`background-image:url(${cambioback(weather)})`
     return (
         <article className='Climapp'>
             <h1>App Clima By Bryansss</h1>
-            <p>{weather.name} {weather.sys?.country}</p>
+            <p><i className='bx bx-map'></i>{weather.name} {weather.sys?.country}</p>
             <small>bryans 30/10/22</small>
             <div className='Climapp-seccioninfo'>
             <div className='imgclima-detalle'>
@@ -85,10 +82,15 @@ document.body.style=`background-image:url(${cambioback(weather)})`
             </div>
            
             <ul>
-                <li>Clouds/Nubes {weather.clouds?.all}%</li>
-                <li>Pressure/Presion {weather.main?.pressure}</li>
-                <li>Speed-Wind/Velocidad-viento {weather.wind?.speed}m/s</li>
+                <li><i className="bx bx-cloud"></i> Clouds/Nubes {weather.clouds?.all}%</li>
+                <li><i className='bx bxs-leaf'></i> Pressure/Presion {weather.main?.pressure}</li>
+                <li><i className='bx bx-wind'></i> Speed-Wind/Velocidad-viento {weather.wind?.speed}m/s</li>
             </ul>
+            </div>
+            <div className='coords'>
+            <p><i className='bx bx-map-pin'></i> Coordinates</p>
+            <small>Latitude {weather.coord?.lat} </small>
+            <small>Longitude {weather.coord?.lon}</small>
             </div>
             <button onClick={cambio}>°C/°F</button>
             <button onClick={()=>alert("espero te haya gustado att bryans2022")}>Show the name him creator</button>

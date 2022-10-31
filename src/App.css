@@ -9,6 +9,15 @@
 body{
    background-size:cover;
 }
+.coords{
+  display:flex ;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  border-bottom:1px solid ;
+}
 .loadsito span{
   color: brown;
 }
