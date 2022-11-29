@@ -1,23 +1,26 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import Load from './Load';
 const Clima = () => {
     const climasimg=["☀️","⛅","🌧️","⛈️","🌁","🌨️"]
     const backgroundWheater=["https://i.pinimg.com/originals/69/da/8f/69da8f67ba69f246eeea92652a333a53.gif","https://acegif.com/wp-content/uploads/gifs/sun-61.gif","https://i.makeagif.com/media/11-06-2015/bs4ZRd.gif","https://acegif.com/wp-content/uploads/gif/snwflks-5.gif","https://i.gifer.com/origin/91/914ce629b8470a3a26e62c3cd02668fa_w200.gif"]
     const [weather,setWeather]=useState({})
     const [tempuwu,setTemp]=useState(true)
+  const [truee,setTruee]=useState(false)
 
 const cambio=()=>{
     setTemp(!tempuwu)
 }
 
     useEffect(()=>{
+      setTruee(true)
       const success= pos => {
           const lat=pos.coords.latitude.toFixed(2)
           const lon=pos.coords.longitude.toFixed(2)
           axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=79fc7d47fd6ef06c6f4a9578a87ae9ff`)
-          .then(res=>setWeather(res.data))  
+          .then(res=>setWeather(res.data))
+          .finally(()=>setTruee(false))
       }
       const options={
             enableHightAccuary:true,
@@ -70,6 +73,8 @@ document.body.style=`background-image:url(${cambioback(weather)})`
   }
 }
     return (
+      <>
+      {truee&&<Load/>}
         <article className='Climapp'>
             <h1>App Clima By Bryansss</h1>
             <p><i className='bx bx-map'></i>{weather.name} {weather.sys?.country}</p>
@@ -95,6 +100,7 @@ document.body.style=`background-image:url(${cambioback(weather)})`
             <button onClick={cambio}>°C/°F</button>
             <button onClick={()=>alert("espero te haya gustado att bryans2022")}>Show the name him creator</button>
         </article>
+        </>
     );
 
 };
